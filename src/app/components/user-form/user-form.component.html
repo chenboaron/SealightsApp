@@ -1,0 +1,12 @@
+<h2>Add a new User</h2>
+
+<form [formGroup]="userForm">
+  <div>
+    <label for="userName">User Name:</label>
+    <input type="text" id="userName" formControlName="userName" required>
+  </div>
+
+  <app-address [parentForm]="userForm"></app-address>
+
+  <button type="submit" [disabled]="userForm.invalid">Save Address</button>
+</form>

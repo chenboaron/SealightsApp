@@ -1,0 +1,22 @@
+<h2>User List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>Addresses Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.birthdate }}</td>
+      <td>{{ user.addresses.length }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="navigateToUserForm()">Add User</button>
