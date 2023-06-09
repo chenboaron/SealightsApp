@@ -4,6 +4,7 @@ import { Country } from 'src/app/models/country.model';
 import { AddressService } from 'src/app/services/address.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -34,7 +35,11 @@ export class AddressComponent implements OnInit {
         return x;
       })
     }, error => {
-      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.message,
+      })
 
     })
   }
@@ -61,17 +66,27 @@ export class AddressComponent implements OnInit {
         id: this.selectedCountry.cities.length + 1,
       }
       this.addressService.addCity(city, this.selectedCountry).subscribe(res => {
-        console.log(res);
         this.countries = this.countries.map(x => {
           if (x.id === this.selectedCountry?.id) {
             x.cities.push(city)
           }
           return x;
         })
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+
 
       }, error => {
-        console.log(error);
-
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.message,
+        })
       })
     }
   }

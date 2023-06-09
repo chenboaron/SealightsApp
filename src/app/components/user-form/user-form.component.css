@@ -1,8 +1,6 @@
 .allPage{
     margin: auto;
-    margin-top: 20px;
-    border: 1px solid black;
-    height: 90%;
+    margin-top: 10px;
     width: 90%;
 }
 
@@ -10,5 +8,9 @@ h2{
     margin: 10px;
     align-items: center;
     text-align: center;
+}
+
+.addresses{
+    width: 50%;
 }
 

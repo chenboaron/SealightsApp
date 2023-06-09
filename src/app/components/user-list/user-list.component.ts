@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-list',
@@ -19,8 +20,11 @@ export class UserListComponent implements OnInit {
       this.userService.users = res
       this.dataSource = this.userService.users;
     }, error => {
-      console.log(error);
-
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.message,
+      })
     });
   }
 

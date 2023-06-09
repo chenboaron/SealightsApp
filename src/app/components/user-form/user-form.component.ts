@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Country } from 'src/app/models/country.model';
 import { AddressService } from 'src/app/services/address.service';
 import { Address } from 'src/app/models/address.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-form',
@@ -29,7 +30,11 @@ export class UserFormComponent implements OnInit {
     this.addressService.getCountries().subscribe((res: Country[]) => {
       this.countries = res;
     }, error => {
-      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.message,
+      })
     })
     this.addAddress()
   }
@@ -51,9 +56,20 @@ export class UserFormComponent implements OnInit {
       this.userService.addUser(user).subscribe({
         next: (res) => {
           console.log(res);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: res.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
         },
         error: (error) => {
-          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.message,
+          })
         }
 
       });

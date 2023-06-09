@@ -20,6 +20,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -47,7 +48,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SweetAlert2Module
 
 
   ],

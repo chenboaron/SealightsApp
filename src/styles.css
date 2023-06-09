@@ -1,8 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-html, body{
-    height: 100%;
+html,
+body {
     width: 100%;
     box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
+
+mat-form-field {
+    margin: 5px;
+    width: 180px;
+    font-size: 12px;
+}
+
+button {
+    margin: 5px;
+}
+

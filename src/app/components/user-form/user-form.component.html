@@ -14,7 +14,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <div formArrayName="addresses">
+    <div formArrayName="addresses" class="addresses">
       <div *ngFor="let addressGroup of getAddressFormArrayControls(); let i = index" [formGroupName]="i">
         <mat-accordion>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -22,9 +22,7 @@
               <mat-panel-title>
                 address - {{i}}
               </mat-panel-title>
-              <mat-panel-description>
-                {{panelOpenState ? 'open' : 'closed'}}
-              </mat-panel-description>
+              <mat-panel-description></mat-panel-description>
             </mat-expansion-panel-header>
             <p>
               <app-address [countries]="countries" [parentForm]="getAddressFormGroup(i)"></app-address>

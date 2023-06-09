@@ -7,31 +7,26 @@
 
 
 
-      <mat-form-field appearance="outline">
-        <mat-label>Select Country</mat-label>
-        <mat-select id="countryId" formControlName="countryId" (selectionChange)="onChangeCountry($event)" required>
-          <mat-option *ngFor="let country of countries" [value]="country.id">
-            {{country.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
- 
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Select City</mat-label>
-          <mat-select id="cityId" formControlName="cityId" required [disabled]="selectedCountry === undefined">
-            <mat-option n *ngFor="let city of  selectedCountry?.cities" [value]="city.id">
-              {{city.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-raised-button color="accent" [disabled]="selectedCountry === undefined" (click)="openDialog()">Add
-          City</button>
-      </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Select Country</mat-label>
+    <mat-select id="countryId" formControlName="countryId" (selectionChange)="onChangeCountry($event)" required>
+      <mat-option *ngFor="let country of countries" [value]="country.id">
+        {{country.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-
-
+  <mat-form-field appearance="outline">
+    <mat-label>Select City</mat-label>
+    <mat-select id="cityId" formControlName="cityId" required [disabled]="selectedCountry === undefined">
+      <mat-option n *ngFor="let city of  selectedCountry?.cities" [value]="city.id">
+        {{city.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Street:</mat-label>
     <input matInput type="text" id="street" formControlName="street" required>
   </mat-form-field>
+  <button mat-raised-button color="accent" [disabled]="selectedCountry === undefined" (click)="openDialog()">Add
+    City</button>
 </div>
