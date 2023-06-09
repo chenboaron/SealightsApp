@@ -1,31 +1,37 @@
 <div [formGroup]="parentForm">
-  <div>
-    <label for="addressName">Address Name:</label>
-    <input type="text" id="addressName" formControlName="addressName" required>
-  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Address Name</mat-label>
+    <input matInput type="text" id="addressName" formControlName="addressName" required>
+  </mat-form-field>
 
-  <div>
-    <label for="countryId">Select Country:</label>
-    <select name="countryId" id="countryId" formControlName="countryId" (change)="onChangeCountry($event)" required>
-      <option *ngFor="let country of countries" [value]="country.id">
-        {{country.name}}
-      </option>
-    </select>
-  </div>
 
-  <div>
-    <label for="cityId">Select City:</label>
-    <select name="cityId" id="cityId" formControlName="cityId" required [disabled]="selectedCountry === undefined">
-      <option *ngFor="let city of  selectedCountry?.cities" [value]="city.id">
-        {{city.name}}
-      </option>
-    </select>
 
-    <button [disabled]="selectedCountry === undefined" (click)="addCity()">Add City</button>
-  </div>
 
-  <div>
-    <label for="street">Street:</label>
-    <input type="text" id="street" formControlName="street" required>
-  </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Select Country</mat-label>
+        <mat-select id="countryId" formControlName="countryId" (selectionChange)="onChangeCountry($event)" required>
+          <mat-option *ngFor="let country of countries" [value]="country.id">
+            {{country.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+ 
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Select City</mat-label>
+          <mat-select id="cityId" formControlName="cityId" required [disabled]="selectedCountry === undefined">
+            <mat-option n *ngFor="let city of  selectedCountry?.cities" [value]="city.id">
+              {{city.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="accent" [disabled]="selectedCountry === undefined" (click)="openDialog()">Add
+          City</button>
+      </div>
+
+
+
+
+  <mat-form-field appearance="outline">
+    <mat-label>Street:</mat-label>
+    <input matInput type="text" id="street" formControlName="street" required>
+  </mat-form-field>
 </div>

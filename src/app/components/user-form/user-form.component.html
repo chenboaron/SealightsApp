@@ -1,24 +1,45 @@
 <div class="allPage">
   <h2>Add a new User</h2>
-
   <form [formGroup]="userForm">
-    <div>
-      <label for="userName">User Name:</label>
-      <input type="text" id="userName" formControlName="userName" required>
-    </div>
-    <div>
-      <label for="Birthday">Birthday:</label>
-      <input type="date" id="Birthday" formControlName="birthday" required>
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>User Name:</mat-label>
+      <input matInput type="text" id="userName" formControlName="userName" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Birthday</mat-label>
+      <input matInput [matDatepicker]="picker" id="Birthday" formControlName="birthday" required>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
     <div formArrayName="addresses">
       <div *ngFor="let addressGroup of getAddressFormArrayControls(); let i = index" [formGroupName]="i">
-        <app-address [countries]="countries" [parentForm]="getAddressFormGroup(i)"></app-address>
-        <button (click)="removeAddress(i)">Remove Address</button>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                address - {{i}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>
+              <app-address [countries]="countries" [parentForm]="getAddressFormGroup(i)"></app-address>
+              <button mat-raised-button color="warn" (click)="removeAddress(i)">Remove Address</button>
+            </p>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
     </div>
 
-    <button (click)="addAddress()">Add Address</button>
-    <button type="submit" [disabled]="userForm.invalid && this.userForm.get('addresses')?.invalid" (click)="onSubmit()">Save Address</button>
+
+
+    <button mat-flat-button color="primary" (click)="addAddress()">Add Address</button>
+    <button mat-flat-button color="primary" type="submit"
+      [disabled]="userForm.invalid && userForm.get('addresses')?.invalid" (click)="onSubmit()">Save</button>
+
   </form>
 </div>

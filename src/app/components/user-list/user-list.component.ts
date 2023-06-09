@@ -9,13 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-
+  displayedColumns: string[] = ['id', 'name', 'birthdate', 'addressesCount'];
+  dataSource: User[] = [];
   constructor(public userService: UserService, private router: Router) {
 
   }
   ngOnInit(): void {
     this.userService.getUsers().subscribe(res => {
       this.userService.users = res
+      this.dataSource = this.userService.users;
     }, error => {
       console.log(error);
 

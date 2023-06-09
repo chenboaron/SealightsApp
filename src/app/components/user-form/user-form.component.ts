@@ -14,6 +14,8 @@ import { Address } from 'src/app/models/address.model';
 export class UserFormComponent implements OnInit {
   userForm: FormGroup;
   countries!: Country[];
+  panelOpenState = false;
+
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private addressService: AddressService) {
     this.userForm = this.formBuilder.group({

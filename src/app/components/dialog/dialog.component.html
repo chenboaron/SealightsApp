@@ -1,0 +1,21 @@
+<div class="form-container">
+    <h2 mat-dialog-title>Add City to {{countryName}}</h2>
+    <br>
+
+    <mat-dialog-content>
+        <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="Enter your City" formControlName="city" />
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="dialogRef.close(false)" color="primary">
+            Close
+        </button>
+        <button mat-raised-button color="primary" (click)="submit(form.value)">
+            Submit
+        </button>
+    </mat-dialog-actions>
+</div>
