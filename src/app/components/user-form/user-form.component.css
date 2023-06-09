@@ -12,5 +12,7 @@ h2{
 
 .addresses{
     width: 50%;
+    max-height: 340px;
+    overflow-y: auto;
 }
 

@@ -6,6 +6,7 @@ import { Country } from 'src/app/models/country.model';
 import { AddressService } from 'src/app/services/address.service';
 import { Address } from 'src/app/models/address.model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -18,7 +19,7 @@ export class UserFormComponent implements OnInit {
   panelOpenState = false;
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private addressService: AddressService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private addressService: AddressService, private router: Router) {
     this.userForm = this.formBuilder.group({
       userName: ['', Validators.required],
       birthday: ['', Validators.required],
@@ -103,4 +104,9 @@ export class UserFormComponent implements OnInit {
   getAddressFormGroup(index: number) {
     return (this.userForm.get('addresses') as FormArray)?.at(index) as FormGroup;
   }
+
+  backAllUsers() {
+    this.router.navigateByUrl('user-list')
+  }
+
 }

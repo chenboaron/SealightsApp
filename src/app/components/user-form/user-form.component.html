@@ -20,7 +20,7 @@
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                address - {{i}}
+                address - {{i+1}}
               </mat-panel-title>
               <mat-panel-description></mat-panel-description>
             </mat-expansion-panel-header>
@@ -37,7 +37,10 @@
 
     <button mat-flat-button color="primary" (click)="addAddress()">Add Address</button>
     <button mat-flat-button color="primary" type="submit"
-      [disabled]="userForm.invalid && userForm.get('addresses')?.invalid" (click)="onSubmit()">Save</button>
+    [disabled]="userForm.invalid && userForm.get('addresses')?.invalid" (click)="onSubmit()">Save</button>
+    <button mat-icon-button color="warn" (click)="backAllUsers()" aria-label="Example icon button with a home icon">
+      <mat-icon>home</mat-icon>
+    </button>
 
   </form>
 </div>
