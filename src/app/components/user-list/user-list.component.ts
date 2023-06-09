@@ -9,16 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  userList: User[] = [];
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(public userService: UserService, private router: Router) {
 
   }
   ngOnInit(): void {
     this.userService.getUsers().subscribe(res => {
-      console.log(res);
-      this.userList = res;
-      debugger
+      this.userService.users = res
     }, error => {
       console.log(error);
 

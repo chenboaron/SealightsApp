@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   baseUrl: string = 'http://localhost:3000/api'
-  private users: User[] = [];
+  users: User[] = [];
   constructor(private http: HttpClient) { }
 
   addUser(user: User): Observable<any> {
-    return this.http.post(`${this.baseUrl}/persons`, user);
+    return this.http.post(`${this.baseUrl}/person`, user);
   }
 
   getUsers(): Observable<any> {

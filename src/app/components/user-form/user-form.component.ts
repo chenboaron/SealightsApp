@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Country } from 'src/app/models/country.model';
 import { AddressService } from 'src/app/services/address.service';
+import { Address } from 'src/app/models/address.model';
 
 @Component({
   selector: 'app-user-form',
@@ -19,13 +20,12 @@ export class UserFormComponent implements OnInit {
       userName: ['', Validators.required],
       birthday: ['', Validators.required],
       addresses: this.formBuilder.array([])
-    });
+    })
   }
 
   ngOnInit(): void {
     this.addressService.getCountries().subscribe((res: Country[]) => {
       this.countries = res;
-      debugger
     }, error => {
       console.log(error);
     })
@@ -35,15 +35,24 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       const user: User = {
-        id: 1, // Generate unique ID or fetch from server
+        id: this.userService?.users?.length + 1,
         name: this.userForm.get('userName')?.value,
         birthdate: this.userForm.get('birthday')?.value,
         addresses: this.userForm.get('addresses')?.value
       };
+      user.addresses = user.addresses.map((x: Address) => {
+        x.countryId = +x.countryId
+        x.cityId = +x.cityId
+        return x;
+      })
 
-      this.userService.addUser(user).subscribe(res => {
-        console.log(res);
-        debugger
+      this.userService.addUser(user).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          console.log(error);
+        }
 
       });
       this.userForm.reset();
@@ -63,8 +72,8 @@ export class UserFormComponent implements OnInit {
   createAddressFormGroup() {
     return this.formBuilder.group({
       addressName: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
+      countryId: ['', Validators.required],
+      cityId: ['', Validators.required],
       street: ['', Validators.required]
     });
   }

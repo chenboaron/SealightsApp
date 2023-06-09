@@ -5,8 +5,8 @@
   </div>
 
   <div>
-    <label for="country">Select Country:</label>
-    <select name="country" id="country" formControlName="country" (change)="onChangeCountry($event)" required>
+    <label for="countryId">Select Country:</label>
+    <select name="countryId" id="countryId" formControlName="countryId" (change)="onChangeCountry($event)" required>
       <option *ngFor="let country of countries" [value]="country.id">
         {{country.name}}
       </option>
@@ -14,8 +14,8 @@
   </div>
 
   <div>
-    <label for="city">Select City:</label>
-    <select name="city" id="city" formControlName="city" required [disabled]="selectedCountry === undefined">
+    <label for="cityId">Select City:</label>
+    <select name="cityId" id="cityId" formControlName="cityId" required [disabled]="selectedCountry === undefined">
       <option *ngFor="let city of  selectedCountry?.cities" [value]="city.id">
         {{city.name}}
       </option>

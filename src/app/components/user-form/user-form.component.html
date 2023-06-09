@@ -19,6 +19,6 @@
     </div>
 
     <button (click)="addAddress()">Add Address</button>
-    <button type="submit" [disabled]="userForm.invalid" (click)="onSubmit()">Save Address</button>
+    <button type="submit" [disabled]="userForm.invalid && this.userForm.get('addresses')?.invalid" (click)="onSubmit()">Save Address</button>
   </form>
 </div>

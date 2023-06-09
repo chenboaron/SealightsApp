@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/models/country.model';
 import { AddressService } from 'src/app/services/address.service';
 
@@ -12,10 +12,10 @@ export class AddressComponent implements OnInit {
   @Input() parentForm!: FormGroup;
   @Input() countries!: Country[];
   selectedCountry: Country | undefined;
-  constructor(private addressService: AddressService) { }
+  constructor( private addressService: AddressService) { }
 
   ngOnInit(): void {
-
+  
   }
 
 
@@ -38,7 +38,7 @@ export class AddressComponent implements OnInit {
     //to do open dailog 
     if (this.selectedCountry) {
       const city = {
-        name: '',
+        name: 'rrrr',
         id: this.selectedCountry.cities.length + 1,
       }
       this.addressService.addCity(city, this.selectedCountry).subscribe(res => {
@@ -49,6 +49,9 @@ export class AddressComponent implements OnInit {
           }
           return x;
         })
+
+      }, error => {
+        console.log(error);
 
       })
     }

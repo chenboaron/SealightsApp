@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of userList">
+    <tr *ngFor="let user of userService?.users">
       <td>{{ user.id }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.birthdate }}</td>
