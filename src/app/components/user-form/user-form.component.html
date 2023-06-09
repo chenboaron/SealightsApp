@@ -1,12 +1,24 @@
-<h2>Add a new User</h2>
+<div class="allPage">
+  <h2>Add a new User</h2>
 
-<form [formGroup]="userForm">
-  <div>
-    <label for="userName">User Name:</label>
-    <input type="text" id="userName" formControlName="userName" required>
-  </div>
+  <form [formGroup]="userForm">
+    <div>
+      <label for="userName">User Name:</label>
+      <input type="text" id="userName" formControlName="userName" required>
+    </div>
+    <div>
+      <label for="Birthday">Birthday:</label>
+      <input type="date" id="Birthday" formControlName="birthday" required>
+    </div>
 
-  <app-address [parentForm]="userForm"></app-address>
+    <div formArrayName="addresses">
+      <div *ngFor="let addressGroup of getAddressFormArrayControls(); let i = index" [formGroupName]="i">
+        <app-address [countries]="countries" [parentForm]="getAddressFormGroup(i)"></app-address>
+        <button (click)="removeAddress(i)">Remove Address</button>
+      </div>
+    </div>
 
-  <button type="submit" [disabled]="userForm.invalid">Save Address</button>
-</form>
+    <button (click)="addAddress()">Add Address</button>
+    <button type="submit" [disabled]="userForm.invalid" (click)="onSubmit()">Save Address</button>
+  </form>
+</div>

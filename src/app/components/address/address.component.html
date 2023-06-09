@@ -1,11 +1,31 @@
-<div formGroupName="address">
-    <div>
-      <label for="addressName">Address Name:</label>
-      <input type="text" id="addressName" formControlName="addressName" required>
-    </div>
-  
-    <div>
-      <label for="street">Street:</label>
-      <input type="text" id="street" formControlName="street" required>
-    </div>
+<div [formGroup]="parentForm">
+  <div>
+    <label for="addressName">Address Name:</label>
+    <input type="text" id="addressName" formControlName="addressName" required>
   </div>
+
+  <div>
+    <label for="country">Select Country:</label>
+    <select name="country" id="country" formControlName="country" (change)="onChangeCountry($event)" required>
+      <option *ngFor="let country of countries" [value]="country.id">
+        {{country.name}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="city">Select City:</label>
+    <select name="city" id="city" formControlName="city" required [disabled]="selectedCountry === undefined">
+      <option *ngFor="let city of  selectedCountry?.cities" [value]="city.id">
+        {{city.name}}
+      </option>
+    </select>
+
+    <button [disabled]="selectedCountry === undefined" (click)="addCity()">Add City</button>
+  </div>
+
+  <div>
+    <label for="street">Street:</label>
+    <input type="text" id="street" formControlName="street" required>
+  </div>
+</div>

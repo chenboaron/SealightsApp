@@ -5,10 +5,13 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { AddressComponent } from './components/address/address.component';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-
-
+import {MatInputModule} from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,8 +24,13 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule,
     AppRoutingModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatFormFieldModule,
+    FormsModule,
+    HttpClientModule
 
 
   ],
